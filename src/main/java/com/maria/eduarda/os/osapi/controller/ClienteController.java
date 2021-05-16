@@ -28,7 +28,7 @@ public class ClienteController {
         if(cliente.isPresent()){
             return ResponseEntity.ok(cliente.get());
         }
-        return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
