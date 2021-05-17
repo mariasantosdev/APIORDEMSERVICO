@@ -2,6 +2,7 @@ package com.maria.eduarda.os.osapi.controller;
 
 import com.maria.eduarda.os.osapi.domain.model.Cliente;
 import com.maria.eduarda.os.osapi.domain.repository.ClienteRepository;
+import com.maria.eduarda.os.osapi.domain.service.CadastroClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
+
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private CadastroClienteService cadastroClienteService;
 
     @GetMapping
     public List<Cliente> listar(){
@@ -33,7 +38,7 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente adicionar(@Valid @RequestBody Cliente cliente){
-        return clienteRepository.save(cliente);
+        return cadastroClienteService.salvar(cliente);
     }
     @PutMapping("/{clienteId}")
     public ResponseEntity<Cliente> atualizar(@Valid @PathVariable Long clienteId,
@@ -42,7 +47,7 @@ public class ClienteController {
             return ResponseEntity.notFound().build();
         }
         cliente.setId(clienteId);
-        cliente = clienteRepository.save(cliente);
+        cliente = cadastroClienteService.salvar(cliente);
         return ResponseEntity.ok(cliente);
     }
     @DeleteMapping("/{clienteId}")
@@ -50,7 +55,7 @@ public class ClienteController {
         if(!clienteRepository.existsById(clienteId)){
             return ResponseEntity.notFound().build();
         }
-        clienteRepository.deleteById(clienteId);
+        cadastroClienteService.excluir(clienteId);
         return ResponseEntity.noContent().build();
     }
 }
