@@ -46,8 +46,8 @@ public class Comentario {
         this.ordemServico = ordemServico;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricao(String descricao) {
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
