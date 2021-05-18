@@ -3,12 +3,13 @@ package com.maria.eduarda.os.osapi.exceptionhandler;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Problema {
     private Integer status;
-    private LocalDateTime dataHora;
+    private OffsetDateTime dataHora;
     private String titulo;
     private List<Campo> campos;
 
@@ -46,14 +47,6 @@ public class Problema {
         this.status = status;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-
     public String getTitulo() {
         return titulo;
     }
@@ -61,11 +54,20 @@ public class Problema {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public List<Campo> getCampos() {
         return campos;
     }
 
     public void setCampos(List<Campo> campos) {
         this.campos = campos;
+    }
+
+    public OffsetDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(OffsetDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 }
