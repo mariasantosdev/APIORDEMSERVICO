@@ -1,18 +1,15 @@
 package com.maria.eduarda.os.osapi.domain.model;
 
-import com.maria.eduarda.os.osapi.domain.ValidationGroups;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class Cliente {
+
     @Id
-    @NotNull(groups = ValidationGroups.ClienteId.class)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

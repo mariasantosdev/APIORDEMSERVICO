@@ -1,14 +1,6 @@
 package com.maria.eduarda.os.osapi.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.maria.eduarda.os.osapi.domain.ValidationGroups;
-
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -21,25 +13,14 @@ public class OrdemServico {
     private Long id;
 
     @ManyToOne
-    @NotNull
-    @Valid
-    @ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
     private Cliente cliente;
-
-    @NotBlank
     private String descricao;
-
-    @NotNull
     private BigDecimal preco;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Enumerated(EnumType.STRING)
     private StatusOrdemServico status;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime dataAbertura;
-
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime dataFinalizacao;
 
     @Override
