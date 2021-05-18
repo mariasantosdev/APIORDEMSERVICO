@@ -3,6 +3,8 @@ package com.maria.eduarda.os.osapi.domain.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +25,9 @@ public class OrdemServico {
     private OffsetDateTime dataAbertura;
     private OffsetDateTime dataFinalizacao;
 
+    @OneToMany(mappedBy = "ordemServico")
+    private List<Comentario> comentarios = new ArrayList<>();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,6 +47,15 @@ public class OrdemServico {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Cliente getCliente() {
